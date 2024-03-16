@@ -30,43 +30,56 @@ min_column_name = df.iloc[:, 1:].idxmin(axis=1)
 
 # Yeni sütunu ekleme
 df['min_error_model'] = min_column_name
-df = df.drop(['cr','des','ses','sma','wh','tsb'], axis = 1)
+
 df = df.rename(columns={'Row Labels': 'Yedek Parça Kodu'})
 
+min_error_array = []
 values = []
 value_count = 12
 for i in range(value_count):
     values.append([])
 
+
 for index, row in df.iterrows():
     if row['min_error_model'] == 'cr':
+        min_error_array.append(df['cr'][index])
         for i in range(value_count):
             values[i].append(cr_df.iloc[index, i + 1])
     elif row['min_error_model'] == 'des':
+        min_error_array.append(df['des'][index])
         for i in range(value_count):
             values[i].append(des_df.iloc[index, i + 1])
     elif row['min_error_model'] == 'ses':
+        min_error_array.append(df['ses'][index])
         for i in range(value_count):
             values[i].append(ses_df.iloc[index, i + 1])
     elif row['min_error_model'] == 'sma':
+        min_error_array.append(df['sma'][index])
         for i in range(value_count):
             values[i].append(sma_df.iloc[index, i + 1])
     elif row['min_error_model'] == 'wh':
+        min_error_array.append(df['wh'][index])
         for i in range(value_count):
             values[i].append(wh_df.iloc[index, i + 1])
     elif row['min_error_model'] == 'tsb':
+        min_error_array.append(df['tsb'][index])
         for i in range(value_count):
             values[i].append(tsb_df.iloc[index, i + 1])
             
     
-    
+df[('min_error')] = min_error_array
+
+df = df.drop(['cr','des','ses','sma','wh','tsb'], axis = 1)
+
 for i in range(value_count):
     df[('Ay_' + str(i + 1))] = values[i]
 
 
-df = df.drop(['min_error_model'], axis = 1)
+
 df.to_excel('preds_low_error.xlsx', index=False)
 
 
+df = df[['Yedek Parça Kodu','min_error_model', 'min_error']]
 
+df.to_excel('result.xlsx', index=False)
 
