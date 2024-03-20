@@ -43,9 +43,9 @@ def take_sma_pred():
         
         for _ in range(12):
             model.fit(yedek_parca_verisi)
-            tahmin = model.predict(1)[0]  # Bir sonraki ay için tahmin
+            tahmin = model.predict(1)[0]
             tahminler.append(int(tahmin))
-            yedek_parca_verisi = np.append(yedek_parca_verisi[1:], tahmin)  # Tahmin edilen değeri veriye ekle
+            yedek_parca_verisi = np.append(yedek_parca_verisi[1:], tahmin)
            
         yeni_satir = {'Yedek Parça Kodu': yedek_parca_kodu}
         for i, tahmin in enumerate(tahminler):

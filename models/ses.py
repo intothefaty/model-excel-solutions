@@ -32,9 +32,6 @@ class SES:
 
 
 
-
-
-
 def take_ses_pred():
     veri = td.take_ronaldo()
     

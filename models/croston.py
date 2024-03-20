@@ -42,7 +42,7 @@ class Croston:
         forecast_values = np.zeros(steps)
         for i in range(steps):
             forecast_values[i] = self.forecast
-            self.forecast = (self.alpha * 0) + (1 - self.alpha) * self.forecast  # Forecast for the next step
+            self.forecast = (self.alpha * 0) + (1 - self.alpha) * self.forecast
         return forecast_values
 
 

@@ -78,7 +78,7 @@ def take_wh_pred():
         
         tahminler_df = pd.concat([tahminler_df, pd.DataFrame(yeni_satir, index=[0])], ignore_index=True)
         
-        tahmin_sutunlari = tahminler_df.columns[1:]  # Parça Kodu sütununu hariç tutuyoruz
+        tahmin_sutunlari = tahminler_df.columns[1:]
         tahminler_df[tahmin_sutunlari] = tahminler_df[tahmin_sutunlari].applymap(lambda x: max(0, x))
         
         

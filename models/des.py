@@ -38,7 +38,7 @@ class DES:
 
         forecast_values = np.zeros(steps)
         for i in range(steps):
-            forecast_values[i] = self.s[-1] + (i + 1) * self.b[-1]  # Simple linear extrapolation
+            forecast_values[i] = self.s[-1] + (i + 1) * self.b[-1]
         return forecast_values
 
 
@@ -61,7 +61,7 @@ def take_des_pred():
         
         tahminler_df = pd.concat([tahminler_df, pd.DataFrame(yeni_satir, index=[0])], ignore_index=True)
         
-        tahmin_sutunlari = tahminler_df.columns[1:]  # Parça Kodu sütununu hariç tutuyoruz
+        tahmin_sutunlari = tahminler_df.columns[1:]
         tahminler_df[tahmin_sutunlari] = tahminler_df[tahmin_sutunlari].applymap(lambda x: max(0, x))
         
     return tahminler_df
